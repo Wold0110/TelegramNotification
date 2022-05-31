@@ -8,7 +8,7 @@ Function Send-Telegram {
 	)
 	Add-Type -AssemblyName System.Web
 	$msg = ([System.Web.HttpUtility]::UrlEncode($Message))
-	$msg = $msg.Replace("%5bok%5d","%E2%9C%85").Replace("%5bnok%5d","%E2%9D%8C")
+	$msg = $msg.Replace("%5cr%5cn","%0A")
 	(curl.exe -s --proxy http://165.225.200.15:80 -X POST "https://api.telegram.org/bot$(get-content -path 'token.txt')/sendMessage?chat_id=$chatId&text=$msg") > $null
 }
 if($args.Count -gt 0){
